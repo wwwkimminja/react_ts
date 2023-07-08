@@ -1,13 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { Container, Header ,Title , Loader} from './Coins'
 import { useLocation, useParams } from 'react-router-dom';
 
 
 export default function Coin() {
   const [loading,setLoading]=useState(true);
-  // const {coinId}= useParams();
+  const [info,setInfo]=useState({});
+  const [priceInfo,setPriceInfo]=useState({});
+   const {coinId}= useParams();
   const {state} =useLocation();
-  console.log(state.name)
+
+  useEffect(()=>{
+    (async()=>{
+     const infoData=await (await fetch(`https://api.coinpaprika.com/v1/coins/${coinId}`)).json();
+     const priceData=await (await fetch(`https://api.coinpaprika.com/v1/tickers/${coinId}`)).json();
+     setInfo(infoData);
+     setPriceInfo(priceData);
+
+    })();
+  },[])
+
  
 
   return (
