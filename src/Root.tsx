@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import Header from "./components/Header";
 import { createGlobalStyle } from "styled-components";
+import Coins from "./screens/Coins";
 
 const GlobalStyles=createGlobalStyle`
 @import url('https://fonts.googeapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@300;400&display=swap');
@@ -38,6 +38,7 @@ a, button {
 }
 a{
   text-decoration: none;
+  color:inherit;
 }
 /* Remove list styles (bullets/numbers) */
 ol, ul, menu {
@@ -119,8 +120,8 @@ meter {
 function Root() {
   return <>
   <GlobalStyles/>
-    <Header/>
-    <Outlet/>
+   <Coins/>
+    {/* <Outlet/> */}
     </>
 }
 
