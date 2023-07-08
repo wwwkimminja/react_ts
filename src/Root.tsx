@@ -120,8 +120,7 @@ meter {
 function Root() {
   return <>
   <GlobalStyles/>
-   <Coins/>
-    {/* <Outlet/> */}
+    <Outlet/>
     </>
 }
 

@@ -2,9 +2,14 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components/'
 
-const Container = styled.div``;
-const Header=styled.header`
-height:10vh;
+export const Container = styled.div`
+padding: 0px 20px;
+max-width: 480px;
+margin: 0 auto;
+`;
+
+export const Header=styled.header`
+height:15vh;
 display:flex;
 justify-content: center;
 align-items:center;
@@ -30,12 +35,12 @@ a{
 }
 `;
 
-const Title=styled.h1`
+export const Title=styled.h1`
 color:${(props)=>props.theme.accentColor};
-font-size: 48px;
+font-size: 40px;
 `;
 
-const Loader=styled.span`
+export const Loader=styled.span`
 text-align:center;
 display:block;
 `;
@@ -75,13 +80,17 @@ export default function Coins() {
 
   return (
    <Container>
-    <Header/>
-    <Title>Coin</Title>
+    <Header>
+    <Title>Coins</Title>
+    </Header>
     {isLoading?<Loader>Loading...</Loader>:
     <CoinsList>
      {coins.map((coin)=>
      <Coin key={coin.id}>
-      <Link to={`/${coin.id}`}>
+      <Link 
+      state={{name:coin.name}} 
+      to={{pathname:`/${coin.id}`}}
+      >
         <Img src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`}/>
         {coin.name} &rarr;
       </Link>
