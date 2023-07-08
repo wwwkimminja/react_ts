@@ -19,7 +19,8 @@ border-radius:15px;
 margin: 10px;
 a{
   transition:color .2s ease-in;
-  display: block;
+  display: flex;
+  align-items: center;
   padding: 20px;
 }
 &:hover{
@@ -37,6 +38,12 @@ font-size: 48px;
 const Loader=styled.span`
 text-align:center;
 display:block;
+`;
+
+const Img=styled.img`
+width: 35px;
+height: 35px;
+margin-right: 10px;
 `;
 
 interface ICoins{
@@ -72,7 +79,13 @@ export default function Coins() {
     <Title>Coin</Title>
     {isLoading?<Loader>Loading...</Loader>:
     <CoinsList>
-     {coins.map((coin)=><Coin key={coin.id}><Link to={`/${coin.id}`}>{coin.name} &rarr;</Link></Coin>) }
+     {coins.map((coin)=>
+     <Coin key={coin.id}>
+      <Link to={`/${coin.id}`}>
+        <Img src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`}/>
+        {coin.name} &rarr;
+      </Link>
+    </Coin>) }
     </CoinsList>}
     </Container>
   )
