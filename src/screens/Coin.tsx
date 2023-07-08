@@ -81,6 +81,7 @@ export default function Coin() {
      const priceData=await (await fetch(`https://api.coinpaprika.com/v1/tickers/${coinId}`)).json();
      setInfo(infoData);
      setPriceInfo(priceData);
+     setLoading(false);
 
     })();
   },[])
@@ -90,7 +91,9 @@ export default function Coin() {
   return (
     <Container>
       <Header>
-        <Title>{state?.name||"Loading..."}</Title>
+      <Title>
+          {state?.name ? state.name : loading ? "Loading..." : info?.name}
+        </Title>
       </Header>
       {loading?<Loader>Loading...</Loader>:null}
 
